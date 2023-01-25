@@ -123,7 +123,10 @@ class SearchViewController: UIViewController {
             viewModel.saveSearchText(searchTexts)
             performSegue(withIdentifier: "showDetail", sender: nil)
         } else {
-            //ALERT
+            DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.showAlertView(title: "Error!", message: "You should write a word...", alertActions: [])
+            }
         }
     }
     
@@ -142,7 +145,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RecentSearchTableViewCell", for: indexPath) as? RecentSearchTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: RecentSearchTableViewCell.self), for: indexPath) as? RecentSearchTableViewCell
         guard let cell = cell else { return UITableViewCell()}
         cell.searchTitleLabel.text = viewModel.getSearchedTexts()[indexPath.row]
         return cell
@@ -154,8 +157,3 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension Optional where Wrapped == String {
-    var isNilOrEmpty: Bool {
-        self == "" || self == nil || self == " "
-    }
-}

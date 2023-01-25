@@ -22,6 +22,8 @@ class DetailViewController: UIViewController {
     var searchText: String?
     var meaningDefinitions = [MeaningDefinition]()
     
+    fileprivate var currentFilterType: WordFilters = .All
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadSearchResult()
@@ -32,30 +34,34 @@ class DetailViewController: UIViewController {
     private func configureCollectionView() {
         detailCollectionView.delegate = self
         detailCollectionView.dataSource = self
-        detailCollectionView.register(DetailTableHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailTableHeaderView")
-        detailCollectionView.register(DetailTableFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "DetailTableFooterView")
-        detailCollectionView.register(UINib(nibName: "DetailCollectionViewCell", bundle: nil),
-                                forCellWithReuseIdentifier: "DetailCollectionViewCell")
-//        if let flowLayout = detailCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
-//            flowLayout.estimatedItemSize.height = UICollectionViewFlowLayout.automaticSize.height
-////            flowLayout.estimatedItemSize.height = view.frame.size.width
-//            flowLayout.itemSize.width = view.frame.size.width
-//        }
-
+        detailCollectionView.register(DetailTableHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: DetailTableHeaderView.self))
+        detailCollectionView.register(DetailTableFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: String(describing: DetailTableFooterView.self))
+        detailCollectionView.register(UINib(nibName: String(describing: DetailCollectionViewCell.self), bundle: nil),
+                                      forCellWithReuseIdentifier: String(describing: DetailCollectionViewCell.self))
     }
     
     private func loadSearchResult() {
-            self.detailViewModel.fetchSearchResult(self.searchText ?? "") { result in
-                switch result {
-                case .success(_ ):
-                    DispatchQueue.main.async { [weak self] in
-                        guard let self = self else { return }
-                        self.detailCollectionView.reloadData()
-                    }
-                case .failure(_ ):
-                    print("something went wrong!") //ALERT
+        self.detailViewModel.fetchSearchResult(self.searchText ?? "") { result in
+            switch result {
+            case .success(_ ):
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    self.detailCollectionView.reloadData()
+                }
+            case .failure(let error):
+                let errorText: String
+                switch error {
+                case .decodingError:
+                    errorText = "The word you searched for was not found."
+                case .domainError:
+                    errorText = "Something went wrong, try again later."
+                }
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    self.showAlertView(title: "Error!", message: errorText, alertActions: [])
                 }
             }
+        }
     }
     
     private func loadSynonymResult() {
@@ -81,7 +87,7 @@ class DetailViewController: UIViewController {
 extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if let _ = meaningDefinitions[indexPath.row].example {
+        if let _ = generateCellItems(with: currentFilterType)[indexPath.row].example {
             return CGSize(width: collectionView.frame.size.width, height: 150)
         } else {
             return CGSize(width: collectionView.frame.size.width, height: 90)
@@ -92,21 +98,21 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
         var index = 1
         for meaning in detailViewModel.meanings {
             for definition in meaning.definitions {
-                meaningDefinitions.append(MeaningDefinition(partOfSpeech: "\(index) - \(meaning.partOfSpeech)", definition: definition.definition, example: definition.example))
+                meaningDefinitions.append(MeaningDefinition(partOfSpeech: "\(index) - \(meaning.partOfSpeech.capitalized)", definition: definition.definition, example: definition.example))
                 index += 1
             }
             index = 1
         }
         
-        return meaningDefinitions.count // meaning definitions filter var mı yok mu bakılacak
+        return generateCellItems(with: currentFilterType).count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailCollectionViewCell", for: indexPath) as? DetailCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: DetailCollectionViewCell.self), for: indexPath) as? DetailCollectionViewCell
         guard let cell = cell else { return UICollectionViewCell()}
-        cell.cellTitle.text = meaningDefinitions[indexPath.row].partOfSpeech
-        cell.cellSubtitle.text = meaningDefinitions[indexPath.row].definition
-        if let exampleSentence = meaningDefinitions[indexPath.row].example {
+        cell.cellTitle.text = generateCellItems(with: currentFilterType)[indexPath.row].partOfSpeech
+        cell.cellSubtitle.text = generateCellItems(with: currentFilterType)[indexPath.row].definition
+        if let exampleSentence = generateCellItems(with: currentFilterType)[indexPath.row].example {
             cell.exampleTitle.text = "Example"
             cell.exampleText.text = exampleSentence
             cell.exampleTitle.isHidden = false
@@ -121,7 +127,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
-            if let headerReusableView = (collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailTableHeaderView", for: indexPath) as? DetailTableHeaderView) {
+            if let headerReusableView = (collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: DetailTableHeaderView.self), for: indexPath) as? DetailTableHeaderView) {
                 headerReusableView.delegate = self
                 if detailViewModel.numberOfRowsInSection() > 0 {
                     headerReusableView.headerTitle.text = detailViewModel.cellForRowAt(indexPath.row).word.capitalized
@@ -130,7 +136,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
                 return headerReusableView
             }
         } else {
-            if let footerReusableView = (collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "DetailTableFooterView", for: indexPath) as? DetailTableFooterView) {
+            if let footerReusableView = (collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: String(describing: DetailTableFooterView.self), for: indexPath) as? DetailTableFooterView) {
                 if detailViewModel.numberOfRowsInSection() > 0 {
                     footerReusableView.synonyms = synonymViewModel.synonymResults()
                 }
@@ -140,10 +146,25 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
         return UICollectionReusableView()
     }
     
+    private func generateCellItems(with filterType: WordFilters) -> [MeaningDefinition] {
+        switch filterType {
+        case .All:
+            return meaningDefinitions
+        case .Noun:
+            return meaningDefinitions.filter { $0.partOfSpeech.contains(((WordFilters.Noun.wordFilter)!))}
+        case .Verb:
+            return meaningDefinitions.filter { $0.partOfSpeech.contains(((WordFilters.Verb.wordFilter)!))}
+        case .Adjective:
+            return meaningDefinitions.filter { $0.partOfSpeech.contains(((WordFilters.Adjective.wordFilter)!))}
+        case .Adverb:
+            return meaningDefinitions.filter { $0.partOfSpeech.contains(((WordFilters.Adverb.wordFilter)!))}
+        }
+    }
 }
 
 extension DetailViewController: DetailTableHeaderViewDelegate {
-    func didTapItem() {
-        
+    func didTapFilterButton(_ filterType: WordFilters) {
+        currentFilterType = filterType
+        detailCollectionView.reloadData()
     }
 }

@@ -17,6 +17,13 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rBC-al-CJS">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
                     <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gXq-6v-zeb">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="9qS-uo-E4h"/>
+                            </constraints>
+                        </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Label Label Label Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66l-7C-aDn">
                             <rect key="frame" x="20" y="14" width="236.5" height="21"/>
                             <constraints>
@@ -47,10 +54,13 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="gXq-6v-zeb" secondAttribute="trailing" id="2Op-dU-GsE"/>
+                        <constraint firstItem="gXq-6v-zeb" firstAttribute="top" secondItem="rBC-al-CJS" secondAttribute="top" id="8Fr-kr-iUM"/>
                         <constraint firstItem="TAh-h9-T47" firstAttribute="top" secondItem="RRX-iE-ChW" secondAttribute="bottom" constant="14" id="E1o-ye-SoU"/>
                         <constraint firstItem="66l-7C-aDn" firstAttribute="top" secondItem="rBC-al-CJS" secondAttribute="top" constant="14" id="OQ5-36-cs3"/>
                         <constraint firstItem="66l-7C-aDn" firstAttribute="leading" secondItem="rBC-al-CJS" secondAttribute="leading" constant="20" id="Xi7-du-84x"/>
                         <constraint firstItem="hox-Sc-pXl" firstAttribute="leading" secondItem="rBC-al-CJS" secondAttribute="leading" constant="20" id="eQF-XJ-zl8"/>
+                        <constraint firstItem="gXq-6v-zeb" firstAttribute="leading" secondItem="rBC-al-CJS" secondAttribute="leading" id="jb2-bM-1vC"/>
                         <constraint firstItem="TAh-h9-T47" firstAttribute="leading" secondItem="rBC-al-CJS" secondAttribute="leading" constant="20" id="mkq-Wi-Atc"/>
                         <constraint firstItem="hox-Sc-pXl" firstAttribute="top" secondItem="TAh-h9-T47" secondAttribute="bottom" constant="10" id="qag-fx-ifC"/>
                         <constraint firstItem="RRX-iE-ChW" firstAttribute="top" secondItem="66l-7C-aDn" secondAttribute="bottom" constant="15" id="wjN-RY-dBh"/>

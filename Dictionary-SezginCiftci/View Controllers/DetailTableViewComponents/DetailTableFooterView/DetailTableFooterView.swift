@@ -28,7 +28,7 @@ class DetailTableFooterView: UICollectionReusableView {
     }
     
     private func commonInit(){
-        let viewFromXib = Bundle.main.loadNibNamed("DetailTableFooterView",
+        let viewFromXib = Bundle.main.loadNibNamed(String(describing: DetailTableFooterView.self),
                                                    owner: self,
                                                    options: nil)![0] as! UIView
         viewFromXib.frame = self.bounds
@@ -39,8 +39,8 @@ class DetailTableFooterView: UICollectionReusableView {
     private func configureHeaderView() {
         footerCollectionView.delegate = self
         footerCollectionView.dataSource = self
-        footerCollectionView.register(UINib(nibName: "FooterCollectionViewCell", bundle: nil),
-                                forCellWithReuseIdentifier: "FooterCollectionViewCell")
+        footerCollectionView.register(UINib(nibName: String(describing: FooterCollectionViewCell.self), bundle: nil),
+                                      forCellWithReuseIdentifier: String(describing: FooterCollectionViewCell.self))
         
         if let flowLayout = footerCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
@@ -55,7 +55,7 @@ extension DetailTableFooterView: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FooterCollectionViewCell", for: indexPath) as? FooterCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: FooterCollectionViewCell.self), for: indexPath) as? FooterCollectionViewCell
         cell?.synonymLabel.text = synonyms?[indexPath.row]
         return cell ?? UICollectionViewCell()
     }
