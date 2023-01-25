@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		C461CB73298044E3007F360A /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C461CB72298044E3007F360A /* DetailCollectionViewCell.swift */; };
 		C461CB7529805F54007F360A /* DetailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C461CB7429805F54007F360A /* DetailCollectionViewCell.xib */; };
-		C461CB782980691E007F360A /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = C461CB772980691E007F360A /* Network.swift */; };
+		C461CB782980691E007F360A /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C461CB772980691E007F360A /* WebService.swift */; };
 		C461CB7A29806944007F360A /* SearchResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C461CB7929806944007F360A /* SearchResultModel.swift */; };
 		C461CB7D29806ED6007F360A /* SynonymResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C461CB7C29806ED6007F360A /* SynonymResultModel.swift */; };
 		C461CB8129806F74007F360A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C461CB8029806F74007F360A /* SearchViewModel.swift */; };
@@ -33,12 +33,16 @@
 		C4F86533297FEE12008F1552 /* HeaderDismissFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4F86532297FEE12008F1552 /* HeaderDismissFilterCell.xib */; };
 		C4FB1DCF298187AF00E09364 /* Optional+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB1DCE298187AF00E09364 /* Optional+Extension.swift */; };
 		C4FB1DD229818A1200E09364 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB1DD129818A1200E09364 /* UIViewController+Extension.swift */; };
+		C4FB1DD42981B6B000E09364 /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB1DD32981B6B000E09364 /* ApiConstants.swift */; };
+		C4FB1DD72981B78300E09364 /* CollectionViewHeightHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB1DD62981B78300E09364 /* CollectionViewHeightHelper.swift */; };
+		C4FB1DD92981B88500E09364 /* DetailHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB1DD82981B88500E09364 /* DetailHeaderViewModel.swift */; };
+		C4FB1DDB2981B93500E09364 /* DetailCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB1DDA2981B93500E09364 /* DetailCollectionCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C461CB72298044E3007F360A /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		C461CB7429805F54007F360A /* DetailCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCollectionViewCell.xib; sourceTree = "<group>"; };
-		C461CB772980691E007F360A /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		C461CB772980691E007F360A /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		C461CB7929806944007F360A /* SearchResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultModel.swift; sourceTree = "<group>"; };
 		C461CB7C29806ED6007F360A /* SynonymResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynonymResultModel.swift; sourceTree = "<group>"; };
 		C461CB8029806F74007F360A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -64,6 +68,10 @@
 		C4F86532297FEE12008F1552 /* HeaderDismissFilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderDismissFilterCell.xib; sourceTree = "<group>"; };
 		C4FB1DCE298187AF00E09364 /* Optional+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extension.swift"; sourceTree = "<group>"; };
 		C4FB1DD129818A1200E09364 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		C4FB1DD32981B6B000E09364 /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
+		C4FB1DD62981B78300E09364 /* CollectionViewHeightHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewHeightHelper.swift; sourceTree = "<group>"; };
+		C4FB1DD82981B88500E09364 /* DetailHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderViewModel.swift; sourceTree = "<group>"; };
+		C4FB1DDA2981B93500E09364 /* DetailCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +85,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C461CB7629806907007F360A /* Network */ = {
+		C461CB7629806907007F360A /* WebService */ = {
 			isa = PBXGroup;
 			children = (
-				C461CB772980691E007F360A /* Network.swift */,
+				C461CB772980691E007F360A /* WebService.swift */,
 			);
-			name = Network;
+			name = WebService;
 			sourceTree = "<group>";
 		};
 		C461CB7B2980694A007F360A /* Model */ = {
@@ -99,6 +107,8 @@
 			children = (
 				C461CB8029806F74007F360A /* SearchViewModel.swift */,
 				C461CB82298077A7007F360A /* DetailListViewModel.swift */,
+				C4FB1DDA2981B93500E09364 /* DetailCollectionCellViewModel.swift */,
+				C4FB1DD82981B88500E09364 /* DetailHeaderViewModel.swift */,
 				C461CB8429808E51007F360A /* SynonymListModel.swift */,
 			);
 			name = ViewModel;
@@ -161,49 +171,48 @@
 		C4A199C1297EF26600EAA026 /* Dictionary-SezginCiftci */ = {
 			isa = PBXGroup;
 			children = (
-				C4A199C2297EF26600EAA026 /* AppDelegate.swift */,
-				C4A199C4297EF26600EAA026 /* SceneDelegate.swift */,
 				C4FB1DD0298187B300E09364 /* Extensions */,
 				C461CB7B2980694A007F360A /* Model */,
-				C461CB7629806907007F360A /* Network */,
+				C4FB1DD52981B6B500E09364 /* Helper */,
+				C461CB7629806907007F360A /* WebService */,
 				C461CB7F29806F32007F360A /* ViewModel */,
-				C4F8651C297FB46F008F1552 /* View Controllers */,
+				C4F8651C297FB46F008F1552 /* View */,
 				C4A199C8297EF26600EAA026 /* Main.storyboard */,
-				C4A199CB297EF26600EAA026 /* Assets.xcassets */,
 				C4A199CD297EF26600EAA026 /* LaunchScreen.storyboard */,
+				C4A199C2297EF26600EAA026 /* AppDelegate.swift */,
+				C4A199C4297EF26600EAA026 /* SceneDelegate.swift */,
+				C4A199CB297EF26600EAA026 /* Assets.xcassets */,
 				C4A199D0297EF26600EAA026 /* Info.plist */,
 			);
 			path = "Dictionary-SezginCiftci";
 			sourceTree = "<group>";
 		};
-		C4F8651C297FB46F008F1552 /* View Controllers */ = {
+		C4F8651C297FB46F008F1552 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C4F8651D297FB488008F1552 /* TableViewCells */,
-				C4A199C6297EF26600EAA026 /* SearchViewController.swift */,
-				C4A199D8297F267D00EAA026 /* DetailViewController.swift */,
-				C4F86522297FB5CD008F1552 /* DetailTableViewComponents */,
+				C4FB1DDD2981BB1E00E09364 /* SearchView */,
+				C4F86522297FB5CD008F1552 /* DetailView */,
 			);
-			path = "View Controllers";
+			path = View;
 			sourceTree = "<group>";
 		};
-		C4F8651D297FB488008F1552 /* TableViewCells */ = {
+		C4F8651D297FB488008F1552 /* RecentSearchTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				C4A199D6297F046600EAA026 /* RecentSearchTableViewCell.swift */,
-				C461CB72298044E3007F360A /* DetailCollectionViewCell.swift */,
-				C461CB7429805F54007F360A /* DetailCollectionViewCell.xib */,
 			);
-			path = TableViewCells;
+			path = RecentSearchTableViewCell;
 			sourceTree = "<group>";
 		};
-		C4F86522297FB5CD008F1552 /* DetailTableViewComponents */ = {
+		C4F86522297FB5CD008F1552 /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
+				C4A199D8297F267D00EAA026 /* DetailViewController.swift */,
+				C4FB1DDC2981BB1600E09364 /* DetailCollectionViewCell */,
 				C49716B7297FFE2A005FFFF6 /* DetailTableHeaderView */,
 				C49716BA297FFE70005FFFF6 /* DetailTableFooterView */,
 			);
-			path = DetailTableViewComponents;
+			path = DetailView;
 			sourceTree = "<group>";
 		};
 		C4FB1DD0298187B300E09364 /* Extensions */ = {
@@ -213,6 +222,33 @@
 				C4FB1DD129818A1200E09364 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C4FB1DD52981B6B500E09364 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				C4FB1DD32981B6B000E09364 /* ApiConstants.swift */,
+				C4FB1DD62981B78300E09364 /* CollectionViewHeightHelper.swift */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		C4FB1DDC2981BB1600E09364 /* DetailCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				C461CB72298044E3007F360A /* DetailCollectionViewCell.swift */,
+				C461CB7429805F54007F360A /* DetailCollectionViewCell.xib */,
+			);
+			path = DetailCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		C4FB1DDD2981BB1E00E09364 /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				C4A199C6297EF26600EAA026 /* SearchViewController.swift */,
+				C4F8651D297FB488008F1552 /* RecentSearchTableViewCell */,
+			);
+			path = SearchView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,14 +328,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4FB1DD229818A1200E09364 /* UIViewController+Extension.swift in Sources */,
+				C4FB1DD92981B88500E09364 /* DetailHeaderViewModel.swift in Sources */,
 				C461CB73298044E3007F360A /* DetailCollectionViewCell.swift in Sources */,
+				C4FB1DD42981B6B000E09364 /* ApiConstants.swift in Sources */,
 				C4A199D7297F046600EAA026 /* RecentSearchTableViewCell.swift in Sources */,
 				C4F8651F297FB586008F1552 /* DetailTableFooterView.swift in Sources */,
 				C4F86531297FEDF5008F1552 /* HeaderDismissFilterCell.swift in Sources */,
-				C461CB782980691E007F360A /* Network.swift in Sources */,
+				C461CB782980691E007F360A /* WebService.swift in Sources */,
 				C4FB1DCF298187AF00E09364 /* Optional+Extension.swift in Sources */,
 				C461CB7D29806ED6007F360A /* SynonymResultModel.swift in Sources */,
 				C4A199C7297EF26600EAA026 /* SearchViewController.swift in Sources */,
+				C4FB1DD72981B78300E09364 /* CollectionViewHeightHelper.swift in Sources */,
 				C4A199D9297F267D00EAA026 /* DetailViewController.swift in Sources */,
 				C461CB8129806F74007F360A /* SearchViewModel.swift in Sources */,
 				C4A199C3297EF26600EAA026 /* AppDelegate.swift in Sources */,
@@ -307,6 +346,7 @@
 				C461CB7A29806944007F360A /* SearchResultModel.swift in Sources */,
 				C4F86521297FB5AB008F1552 /* DetailTableHeaderView.swift in Sources */,
 				C4A199C5297EF26600EAA026 /* SceneDelegate.swift in Sources */,
+				C4FB1DDB2981B93500E09364 /* DetailCollectionCellViewModel.swift in Sources */,
 				C461CB83298077A7007F360A /* DetailListViewModel.swift in Sources */,
 				C4F8652B297FC170008F1552 /* FooterCollectionViewCell.swift in Sources */,
 			);
@@ -461,8 +501,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -489,8 +531,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

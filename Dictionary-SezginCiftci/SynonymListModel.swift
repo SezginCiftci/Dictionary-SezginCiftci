@@ -9,11 +9,11 @@ import Foundation
 
 class SynonymViewListModel {
     
-    private let service = Network()
+    private let service = WebService()
     private var synonymResult = [SynonymResultModel]()
     
     func fetchSynonymResult(_ searchText: String, completion: @escaping (Result<[SynonymResultModel], NetworkError>) -> ()) {
-        guard let url = URL(string: "https://api.datamuse.com/words?rel_syn=\(searchText)") else { return }
+        guard let url = URL(string: "\(ApiConstants.synonymUrl)\(searchText)") else { return }
         let resource = Resource<[SynonymResultModel]>(url: url)
         service.fetchData(resource: resource) { result in
             switch result {
@@ -37,17 +37,5 @@ class SynonymViewListModel {
             returnSynonyms.append(syn)
         }
         return returnSynonyms
-    }
-}
-
-struct SynonymViewModel {
-    
-    let synonymResult: SynonymResultModel
-    
-    var word: String {
-        return synonymResult.word
-    }
-    var phonetic: Int {
-        return synonymResult.score
     }
 }

@@ -7,12 +7,6 @@
 
 import UIKit
 
-struct MeaningDefinition: Hashable, Equatable {
-    var partOfSpeech: String
-    var definition: String
-    var example: String?
-}
-
 class DetailViewController: UIViewController {
         
     @IBOutlet weak var detailCollectionView: UICollectionView!
@@ -20,10 +14,9 @@ class DetailViewController: UIViewController {
     
     fileprivate var detailViewModel = DetailListViewModel()
     fileprivate var synonymViewModel = SynonymViewListModel()
-    var searchText: String?
-    var meaningDefinitions = [MeaningDefinition]()
-    
+    fileprivate var meaningDefinitions = [DetailCollectionCellViewModel]()
     fileprivate var currentFilterType: WordFilters = .All
+    var searchText: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,7 +85,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
             var index = 1
             for meaning in detailViewModel.meanings {
                 for definition in meaning.definitions {
-                    meaningDefinitions.append(MeaningDefinition(partOfSpeech: "\(index) - \(meaning.partOfSpeech.capitalized)", definition: definition.definition, example: definition.example))
+                    meaningDefinitions.append(DetailCollectionCellViewModel(partOfSpeech: generateAttributedstring(index, meaning.partOfSpeech.capitalized), definition: definition.definition, example: definition.example))
                     index += 1
                 }
                 index = 1
@@ -102,10 +95,27 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
         return generateCellItems(with: currentFilterType).count
     }
     
+    func generateAttributedstring(_ index: Int, _ text: String) -> NSAttributedString {
+        let firstAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 18),
+            .foregroundColor: UIColor.black,
+        ]
+        let secondAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.italicSystemFont(ofSize: 18),
+            .foregroundColor: UIColor(named: "CellTitleColor")!,
+        ]
+
+        let firstString = NSMutableAttributedString(string: "\(index) - ", attributes: firstAttributes)
+        let secondString = NSAttributedString(string: text, attributes: secondAttributes)
+        firstString.append(secondString)
+        
+        return firstString
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: DetailCollectionViewCell.self), for: indexPath) as? DetailCollectionViewCell
         guard let cell = cell else { return UICollectionViewCell()}
-        cell.cellTitle.text = generateCellItems(with: currentFilterType)[indexPath.row].partOfSpeech
+        cell.cellTitle.attributedText = generateCellItems(with: currentFilterType)[indexPath.row].partOfSpeech
         cell.cellSubtitle.text = generateCellItems(with: currentFilterType)[indexPath.row].definition
         if let exampleSentence = generateCellItems(with: currentFilterType)[indexPath.row].example {
             cell.exampleTitle.text = "Example"
@@ -141,18 +151,18 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
         return UICollectionReusableView()
     }
     
-    private func generateCellItems(with filterType: WordFilters) -> [MeaningDefinition] {
+    private func generateCellItems(with filterType: WordFilters) -> [DetailCollectionCellViewModel] {
         switch filterType {
         case .All:
             return meaningDefinitions
         case .Noun:
-            return meaningDefinitions.filter { $0.partOfSpeech.contains(((WordFilters.Noun.wordFilter)!))}
+            return meaningDefinitions.filter { $0.partOfSpeech.string.contains(((WordFilters.Noun.wordFilter)!))}
         case .Verb:
-            return meaningDefinitions.filter { $0.partOfSpeech.contains(((WordFilters.Verb.wordFilter)!))}
+            return meaningDefinitions.filter { $0.partOfSpeech.string.contains(((WordFilters.Verb.wordFilter)!))}
         case .Adjective:
-            return meaningDefinitions.filter { $0.partOfSpeech.contains(((WordFilters.Adjective.wordFilter)!))}
+            return meaningDefinitions.filter { $0.partOfSpeech.string.contains(((WordFilters.Adjective.wordFilter)!))}
         case .Adverb:
-            return meaningDefinitions.filter { $0.partOfSpeech.contains(((WordFilters.Adverb.wordFilter)!))}
+            return meaningDefinitions.filter { $0.partOfSpeech.string.contains(((WordFilters.Adverb.wordFilter)!))}
         }
     }
 }
@@ -165,23 +175,4 @@ extension DetailViewController: DetailTableHeaderViewDelegate {
 }
 
 
-class CollectionViewCellHeightHelper {
-    
-    func generateCellHeight(_ descriptionText: String, _ exampleText: String?) -> CGFloat {
-        if let exampleText = exampleText {
-            switch descriptionText.count + (exampleText.count) {
-            case 0...250:
-                return 150
-            case 251...350:
-                return 200
-            case 351...:
-                return 250
-            default:
-                return 150
-            }
-        } else {
-            return 90
-        }
-        
-    }
-}
+

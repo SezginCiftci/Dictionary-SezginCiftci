@@ -16,7 +16,7 @@ struct Resource<T: Codable> {
     let url: URL
 }
 
-struct Network {
+struct WebService {
     
     func fetchData<T>(resource: Resource<T>, completion: @escaping (Result<T, NetworkError>) -> ()) {
         

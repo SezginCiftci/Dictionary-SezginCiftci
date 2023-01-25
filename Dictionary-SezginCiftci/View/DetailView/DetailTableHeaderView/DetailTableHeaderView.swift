@@ -88,7 +88,6 @@ extension DetailTableHeaderView: UICollectionViewDataSource, UICollectionViewDel
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HeaderDismissFilterCell.self), for: indexPath) as? HeaderDismissFilterCell
             guard let cell = cell else { return UICollectionViewCell()}
-            
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: FooterCollectionViewCell.self), for: indexPath) as? FooterCollectionViewCell
@@ -118,13 +117,5 @@ extension DetailTableHeaderView: UICollectionViewDataSource, UICollectionViewDel
             delegate?.didTapFilterButton(.All)
         }
     }
-    
 }
 
-//extension UICollectionView {
-//    func reloadData( completion:@escaping () -> ()) {
-//        UIView.animate(withDuration: 0, animations: { self.reloadData() }) { _ in
-//            completion()
-//        }
-//    }
-//}
