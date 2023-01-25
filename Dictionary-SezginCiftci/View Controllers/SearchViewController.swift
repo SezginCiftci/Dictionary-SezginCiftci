@@ -14,12 +14,22 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchTextField: UITextField!
     
+    fileprivate var viewModel = SearchViewModel()
+    fileprivate var searchTexts = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSearchView()
         configureTableView()
         addKeyboardObservers()
         addSwipeGesture()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        searchTextField.text = nil
+        searchTexts = viewModel.getSearchedTexts()
+        recentSearchTableView.reloadData()
     }
 
     private func configureSearchView() {
@@ -103,32 +113,49 @@ class SearchViewController: UIViewController {
         }
     }
     
-    @IBAction func searchTextDidChange(_ sender: UITextField) {
-        //print(sender.text) //lazım değil gibi
-    }
-    
     @IBAction func searchTextdDidBeginEditing(_ sender: UITextField) {
         searchTextField.becomeFirstResponder()
     }
     
     @IBAction func searchButtonClicked(_ sender: UIButton) {
-        performSegue(withIdentifier: "showDetail", sender: nil)
+        if !searchTextField.text.isNilOrEmpty {
+            searchTexts.append(searchTextField.text!.capitalized)
+            viewModel.saveSearchText(searchTexts)
+            performSegue(withIdentifier: "showDetail", sender: nil)
+        } else {
+            //ALERT
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let detailVC = segue.destination as? DetailViewController else { return }
+        if let searchText = searchTextField.text {
+            detailVC.searchText = searchText.contains(" ") ? searchText.replacingOccurrences(of: " ", with: "") : searchText
+        }
     }
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return viewModel.getSearchedTexts().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecentSearchTableViewCell", for: indexPath) as? RecentSearchTableViewCell
-        cell?.searchTitleLabel.text = "Deneme 123"
-        return cell ?? UITableViewCell()
+        guard let cell = cell else { return UITableViewCell()}
+        cell.searchTitleLabel.text = viewModel.getSearchedTexts()[indexPath.row]
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchTextField.text = searchTexts[indexPath.row]
         performSegue(withIdentifier: "showDetail", sender: nil)
+    }
+}
+
+extension Optional where Wrapped == String {
+    var isNilOrEmpty: Bool {
+        self == "" || self == nil || self == " "
     }
 }

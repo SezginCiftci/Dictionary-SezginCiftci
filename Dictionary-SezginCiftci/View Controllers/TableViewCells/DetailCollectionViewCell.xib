@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailCollectionViewCell" customModule="Dictionary_SezginCiftci" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="X98-Ez-5rZ" customClass="DetailCollectionViewCell" customModule="Dictionary_SezginCiftci" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rBC-al-CJS">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66l-7C-aDn">
+                            <rect key="frame" x="20" y="14" width="374" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="yVK-QS-hss"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRX-iE-ChW">
+                            <rect key="frame" x="20" y="50" width="374" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" name="cellSubtitlecolor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAh-h9-T47">
+                            <rect key="frame" x="20" y="81" width="374" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hox-Sc-pXl">
+                            <rect key="frame" x="20" y="105.5" width="374" height="14.5"/>
+                            <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
+                            <color key="textColor" name="cellSubtitlecolor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="TAh-h9-T47" secondAttribute="trailing" constant="20" id="0OV-OY-egh"/>
+                        <constraint firstAttribute="trailing" secondItem="66l-7C-aDn" secondAttribute="trailing" constant="20" id="8h4-Tg-dQ1"/>
+                        <constraint firstItem="TAh-h9-T47" firstAttribute="top" secondItem="RRX-iE-ChW" secondAttribute="bottom" constant="14" id="Mbq-Dy-OWv"/>
+                        <constraint firstItem="66l-7C-aDn" firstAttribute="top" secondItem="rBC-al-CJS" secondAttribute="top" constant="14" id="OQ5-36-cs3"/>
+                        <constraint firstAttribute="trailing" secondItem="RRX-iE-ChW" secondAttribute="trailing" constant="20" id="PHn-WP-Kks"/>
+                        <constraint firstAttribute="trailing" secondItem="hox-Sc-pXl" secondAttribute="trailing" constant="20" id="QTt-GS-FhD"/>
+                        <constraint firstItem="66l-7C-aDn" firstAttribute="leading" secondItem="rBC-al-CJS" secondAttribute="leading" constant="20" id="Xi7-du-84x"/>
+                        <constraint firstItem="hox-Sc-pXl" firstAttribute="top" secondItem="TAh-h9-T47" secondAttribute="bottom" constant="10" id="bpz-Df-C2C"/>
+                        <constraint firstItem="hox-Sc-pXl" firstAttribute="leading" secondItem="rBC-al-CJS" secondAttribute="leading" constant="20" id="eQF-XJ-zl8"/>
+                        <constraint firstItem="TAh-h9-T47" firstAttribute="leading" secondItem="rBC-al-CJS" secondAttribute="leading" constant="20" id="mkq-Wi-Atc"/>
+                        <constraint firstItem="RRX-iE-ChW" firstAttribute="top" secondItem="66l-7C-aDn" secondAttribute="bottom" constant="15" id="wjN-RY-dBh"/>
+                        <constraint firstItem="RRX-iE-ChW" firstAttribute="leading" secondItem="rBC-al-CJS" secondAttribute="leading" constant="20" id="xU2-hp-TDS"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="rBC-al-CJS" firstAttribute="leading" secondItem="X98-Ez-5rZ" secondAttribute="leading" id="FvV-K4-Wym"/>
+                <constraint firstItem="rBC-al-CJS" firstAttribute="top" secondItem="X98-Ez-5rZ" secondAttribute="top" id="WgO-nz-n3F"/>
+                <constraint firstAttribute="trailing" secondItem="rBC-al-CJS" secondAttribute="trailing" id="jaG-vf-iTr"/>
+                <constraint firstAttribute="bottom" secondItem="rBC-al-CJS" secondAttribute="bottom" id="uGm-Wu-gim"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="cellSubtitle" destination="RRX-iE-ChW" id="Yac-kg-I2M"/>
+                <outlet property="cellTitle" destination="66l-7C-aDn" id="Kl4-J4-D54"/>
+                <outlet property="exampleText" destination="hox-Sc-pXl" id="6Eq-tG-m2u"/>
+                <outlet property="exampleTitle" destination="TAh-h9-T47" id="PQy-Wb-S4m"/>
+            </connections>
+            <point key="canvasLocation" x="50" y="75"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="cellSubtitlecolor">
+            <color red="0.18799999356269836" green="0.18799999356269836" blue="0.18799999356269836" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

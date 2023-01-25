@@ -8,26 +8,63 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    
-    @IBOutlet weak var detailTableView: UITableView!
+        
+    @IBOutlet weak var detailCollectionView: UICollectionView!
     
     var dummyTitle = "1 - Noun"
-    var dummySubtitle = ["One’s native land; the place or country in which one dwells; the place where one’s ancestors dwell or dwelt.", "A dwelling.", "native land"]
+    var dummySubtitle = ["One’s native land; the place or country in which one dwells; the place where one’s ancestors dwell or dwelt. the place where one’s ancestors dwell or dwelt.", "A dwelling.", "native land"]
     var dummyExample = "Example"
     var dummyExampleText = ["the place or", "the place or country in which one dwells", "which one"]
     
+    fileprivate var detailViewModel = DetailListViewModel()
+    fileprivate var synonymViewModel = SynonymViewListModel()
+    var searchText: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableView()
+        loadSearchResult()
+        loadSynonymResult()
+        configureCollectionView()
     }
     
-    private func configureTableView() {
-        detailTableView.delegate = self
-        detailTableView.dataSource = self
-        let header = DetailTableHeaderView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 150))
-        let footer = DetailTableFooterView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 150))
-        detailTableView.tableHeaderView = header
-        detailTableView.tableFooterView = footer
+    private func configureCollectionView() {
+        detailCollectionView.delegate = self
+        detailCollectionView.dataSource = self
+        detailCollectionView.register(DetailTableHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailTableHeaderView")
+        detailCollectionView.register(DetailTableFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "DetailTableFooterView")
+        detailCollectionView.register(UINib(nibName: "DetailCollectionViewCell", bundle: nil),
+                                forCellWithReuseIdentifier: "DetailCollectionViewCell")
+        if let flowLayout = detailCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
+    }
+    
+    private func loadSearchResult() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.detailViewModel.fetchSearchResult(self.searchText ?? "") { result in
+                switch result {
+                case .success(_ ):
+                    self.detailCollectionView.reloadData()
+                case .failure(_ ):
+                    print("something went wrong!") //ALERT
+                }
+            }
+        }
+    }
+    
+    private func loadSynonymResult() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.synonymViewModel.fetchSynonymResult(self.searchText ?? "") { result in
+                switch result {
+                case .success(_ ):
+                    self.detailCollectionView.reloadData()
+                case .failure(_ ):
+                    break
+                }
+            }
+        }
     }
     
     @IBAction func backButtonClicked(_ sender: UIButton) {
@@ -35,31 +72,51 @@ class DetailViewController: UIViewController {
     }
 }
 
-extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
+extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let seperator = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 1))
-        seperator.backgroundColor = .lightGray
-        return seperator
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.view.frame.width, height: 140)
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(detailViewModel.numberOfRowsInSection())
+        return detailViewModel.numberOfRowsInSection()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DetailTableViewCell", for: indexPath) as? DetailTableViewCell
-        guard let cell = cell else { return UITableViewCell() }
-        print("row: \(indexPath.row)", "section: \(indexPath.section)")
-        
-        
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailCollectionViewCell", for: indexPath) as? DetailCollectionViewCell
+        guard let cell = cell else { return UICollectionViewCell()}
+        print(detailViewModel.cellForRowAt(indexPath.row).word)
+//        cell.cellTitle.text = dummyTitle
+//        cell.cellSubtitle.text = dummySubtitle[indexPath.row]
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            if let headerReusableView = (collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "DetailTableHeaderView", for: indexPath) as? DetailTableHeaderView) {
+                headerReusableView.delegate = self
+                if detailViewModel.numberOfRowsInSection() > 0 {
+                    headerReusableView.headerTitle.text = detailViewModel.cellForRowAt(indexPath.row).word.capitalized
+                    headerReusableView.phoneticTitle.text = detailViewModel.cellForRowAt(indexPath.row).phonetic
+                }
+                return headerReusableView
+            }
+        } else {
+            if let footerReusableView = (collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "DetailTableFooterView", for: indexPath) as? DetailTableFooterView) {
+                if detailViewModel.numberOfRowsInSection() > 0 {
+                    footerReusableView.synonyms = synonymViewModel.synonymResults()
+                }
+                return footerReusableView
+            }
+        }
+        return UICollectionReusableView()
+    }
+    
+}
+
+extension DetailViewController: DetailTableHeaderViewDelegate {
+    func didTapItem() {
+        
     }
 }

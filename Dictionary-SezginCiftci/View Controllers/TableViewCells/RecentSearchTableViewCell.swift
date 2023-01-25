@@ -8,6 +8,5 @@
 import UIKit
 
 class RecentSearchTableViewCell: UITableViewCell {
-    
     @IBOutlet weak var searchTitleLabel: UILabel!
 }

@@ -7,9 +7,15 @@
 
 import UIKit
 
-class DetailTableFooterView: UIView {
+class DetailTableFooterView: UICollectionReusableView {
     
     @IBOutlet weak var footerCollectionView: UICollectionView!
+    
+    var synonyms: [String]? {
+        didSet {
+            footerCollectionView.reloadData()
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,12 +51,12 @@ class DetailTableFooterView: UIView {
 extension DetailTableFooterView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return synonyms?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FooterCollectionViewCell", for: indexPath) as? FooterCollectionViewCell
-        cell?.synonymLabel.text = "deneme"
+        cell?.synonymLabel.text = synonyms?[indexPath.row]
         return cell ?? UICollectionViewCell()
     }
 }
