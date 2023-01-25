@@ -7,128 +7,96 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6803AC3B-75EB-4300-871E-A53369266A33"
-            shouldBeEnabled = "Yes"
+            uuid = "56BA8113-860B-47ED-A6EF-6E17AD7D732F"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Dictionary-SezginCiftci/View Controllers/DetailTableViewComponents/DetailTableHeaderView/DetailTableHeaderView.swift"
+            filePath = "Dictionary-SezginCiftci/Network.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
-            landmarkName = "collectionView(_:didSelectItemAt:)"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "fetchData(resource:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2C5097F8-B94F-4A50-B49C-EBAC5000F7B5"
-            shouldBeEnabled = "Yes"
+            uuid = "E1D835C0-445D-4512-B8B2-CECDC2B59C14"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Dictionary-SezginCiftci/View Controllers/DetailTableViewComponents/DetailTableHeaderView/DetailTableHeaderView.swift"
+            filePath = "Dictionary-SezginCiftci/Network.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "generateFilterTypes(_:)"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "fetchData(resource:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BA068634-238B-4F36-A5D1-F6ED2814D17E"
-            shouldBeEnabled = "Yes"
+            uuid = "DA6A1F96-7A79-4F64-B75B-AAD53375C5E9"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Dictionary-SezginCiftci/View Controllers/DetailTableViewComponents/DetailTableHeaderView/DetailTableHeaderView.swift"
+            filePath = "Dictionary-SezginCiftci/Network.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "generateFilterTypes(_:)"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "fetchData(resource:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E974CBBE-193B-469F-92E8-F6952FAC4AB6"
-            shouldBeEnabled = "Yes"
+            uuid = "F50A8A2B-9A96-4D34-8AE1-134C18EF69D3"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Dictionary-SezginCiftci/View Controllers/DetailTableViewComponents/DetailTableHeaderView/DetailTableHeaderView.swift"
+            filePath = "Dictionary-SezginCiftci/View Controllers/DetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "generateFilterTypes(_:)"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "loadSearchResult()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5910E57C-F74D-48B3-958C-4A5CA5DA29A5"
-            shouldBeEnabled = "Yes"
+            uuid = "6FFA1F4E-FEF8-4D29-9138-14DCAAFE9358"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Dictionary-SezginCiftci/View Controllers/DetailTableViewComponents/DetailTableHeaderView/DetailTableHeaderView.swift"
+            filePath = "Dictionary-SezginCiftci/DetailListViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "generateFilterTypes(_:)"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "numberOfRowsInSection()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7D2EB7B8-A25E-436A-81A9-114A0244DB66"
-            shouldBeEnabled = "Yes"
+            uuid = "1BD297B8-2D15-4416-9451-04730F56975A"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Dictionary-SezginCiftci/View Controllers/DetailTableViewComponents/DetailTableHeaderView/DetailTableHeaderView.swift"
+            filePath = "Dictionary-SezginCiftci/DetailListViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
-            landmarkName = "generateFilterTypes(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "71C6E3C2-A31D-401D-8143-FCA10EB47610"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dictionary-SezginCiftci/View Controllers/DetailTableViewComponents/DetailTableHeaderView/DetailTableHeaderView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "generateFilterTypes(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CA447250-21C5-41E6-9314-B3B1651695F2"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Dictionary-SezginCiftci/View Controllers/DetailTableViewComponents/DetailTableHeaderView/DetailTableHeaderView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
-            landmarkName = "collectionView(_:didSelectItemAt:)"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "itemsInSection(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

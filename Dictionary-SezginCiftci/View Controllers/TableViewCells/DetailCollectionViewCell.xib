@@ -17,8 +17,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rBC-al-CJS">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="140"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66l-7C-aDn">
-                            <rect key="frame" x="20" y="14" width="374" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Label Label Label Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66l-7C-aDn">
+                            <rect key="frame" x="20" y="14" width="236.5" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="yVK-QS-hss"/>
                             </constraints>
@@ -26,20 +26,20 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRX-iE-ChW">
-                            <rect key="frame" x="20" y="50" width="374" height="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRX-iE-ChW">
+                            <rect key="frame" x="20" y="50" width="35.5" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" name="cellSubtitlecolor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAh-h9-T47">
-                            <rect key="frame" x="20" y="81" width="374" height="14.5"/>
+                            <rect key="frame" x="20" y="81" width="31" height="14.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hox-Sc-pXl">
-                            <rect key="frame" x="20" y="105.5" width="374" height="14.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hox-Sc-pXl">
+                            <rect key="frame" x="20" y="105.5" width="372.5" height="14.5"/>
                             <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
                             <color key="textColor" name="cellSubtitlecolor"/>
                             <nil key="highlightedColor"/>
@@ -47,16 +47,12 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="TAh-h9-T47" secondAttribute="trailing" constant="20" id="0OV-OY-egh"/>
-                        <constraint firstAttribute="trailing" secondItem="66l-7C-aDn" secondAttribute="trailing" constant="20" id="8h4-Tg-dQ1"/>
-                        <constraint firstItem="TAh-h9-T47" firstAttribute="top" secondItem="RRX-iE-ChW" secondAttribute="bottom" constant="14" id="Mbq-Dy-OWv"/>
+                        <constraint firstItem="TAh-h9-T47" firstAttribute="top" secondItem="RRX-iE-ChW" secondAttribute="bottom" constant="14" id="E1o-ye-SoU"/>
                         <constraint firstItem="66l-7C-aDn" firstAttribute="top" secondItem="rBC-al-CJS" secondAttribute="top" constant="14" id="OQ5-36-cs3"/>
-                        <constraint firstAttribute="trailing" secondItem="RRX-iE-ChW" secondAttribute="trailing" constant="20" id="PHn-WP-Kks"/>
-                        <constraint firstAttribute="trailing" secondItem="hox-Sc-pXl" secondAttribute="trailing" constant="20" id="QTt-GS-FhD"/>
                         <constraint firstItem="66l-7C-aDn" firstAttribute="leading" secondItem="rBC-al-CJS" secondAttribute="leading" constant="20" id="Xi7-du-84x"/>
-                        <constraint firstItem="hox-Sc-pXl" firstAttribute="top" secondItem="TAh-h9-T47" secondAttribute="bottom" constant="10" id="bpz-Df-C2C"/>
                         <constraint firstItem="hox-Sc-pXl" firstAttribute="leading" secondItem="rBC-al-CJS" secondAttribute="leading" constant="20" id="eQF-XJ-zl8"/>
                         <constraint firstItem="TAh-h9-T47" firstAttribute="leading" secondItem="rBC-al-CJS" secondAttribute="leading" constant="20" id="mkq-Wi-Atc"/>
+                        <constraint firstItem="hox-Sc-pXl" firstAttribute="top" secondItem="TAh-h9-T47" secondAttribute="bottom" constant="10" id="qag-fx-ifC"/>
                         <constraint firstItem="RRX-iE-ChW" firstAttribute="top" secondItem="66l-7C-aDn" secondAttribute="bottom" constant="15" id="wjN-RY-dBh"/>
                         <constraint firstItem="RRX-iE-ChW" firstAttribute="leading" secondItem="rBC-al-CJS" secondAttribute="leading" constant="20" id="xU2-hp-TDS"/>
                     </constraints>
@@ -64,7 +60,9 @@
             </subviews>
             <constraints>
                 <constraint firstItem="rBC-al-CJS" firstAttribute="leading" secondItem="X98-Ez-5rZ" secondAttribute="leading" id="FvV-K4-Wym"/>
+                <constraint firstItem="RRX-iE-ChW" firstAttribute="width" relation="lessThanOrEqual" secondItem="X98-Ez-5rZ" secondAttribute="width" multiplier="0.9" id="Rgg-49-e4E"/>
                 <constraint firstItem="rBC-al-CJS" firstAttribute="top" secondItem="X98-Ez-5rZ" secondAttribute="top" id="WgO-nz-n3F"/>
+                <constraint firstItem="hox-Sc-pXl" firstAttribute="width" secondItem="X98-Ez-5rZ" secondAttribute="width" multiplier="0.9" id="anz-iq-aYL"/>
                 <constraint firstAttribute="trailing" secondItem="rBC-al-CJS" secondAttribute="trailing" id="jaG-vf-iTr"/>
                 <constraint firstAttribute="bottom" secondItem="rBC-al-CJS" secondAttribute="bottom" id="uGm-Wu-gim"/>
             </constraints>
@@ -75,7 +73,7 @@
                 <outlet property="exampleText" destination="hox-Sc-pXl" id="6Eq-tG-m2u"/>
                 <outlet property="exampleTitle" destination="TAh-h9-T47" id="PQy-Wb-S4m"/>
             </connections>
-            <point key="canvasLocation" x="50" y="75"/>
+            <point key="canvasLocation" x="49.275362318840585" y="75"/>
         </view>
     </objects>
     <resources>

@@ -7,18 +7,20 @@
 
 import UIKit
 
+struct MeaningDefinition {
+    var partOfSpeech: String
+    var definition: String
+    var example: String?
+}
+
 class DetailViewController: UIViewController {
         
     @IBOutlet weak var detailCollectionView: UICollectionView!
     
-    var dummyTitle = "1 - Noun"
-    var dummySubtitle = ["One’s native land; the place or country in which one dwells; the place where one’s ancestors dwell or dwelt. the place where one’s ancestors dwell or dwelt.", "A dwelling.", "native land"]
-    var dummyExample = "Example"
-    var dummyExampleText = ["the place or", "the place or country in which one dwells", "which one"]
-    
     fileprivate var detailViewModel = DetailListViewModel()
     fileprivate var synonymViewModel = SynonymViewListModel()
     var searchText: String?
+    var meaningDefinitions = [MeaningDefinition]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,37 +36,41 @@ class DetailViewController: UIViewController {
         detailCollectionView.register(DetailTableFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "DetailTableFooterView")
         detailCollectionView.register(UINib(nibName: "DetailCollectionViewCell", bundle: nil),
                                 forCellWithReuseIdentifier: "DetailCollectionViewCell")
-        if let flowLayout = detailCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        }
+//        if let flowLayout = detailCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+//            flowLayout.estimatedItemSize.height = UICollectionViewFlowLayout.automaticSize.height
+////            flowLayout.estimatedItemSize.height = view.frame.size.width
+//            flowLayout.itemSize.width = view.frame.size.width
+//        }
+
     }
     
     private func loadSearchResult() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
             self.detailViewModel.fetchSearchResult(self.searchText ?? "") { result in
                 switch result {
                 case .success(_ ):
-                    self.detailCollectionView.reloadData()
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self = self else { return }
+                        self.detailCollectionView.reloadData()
+                    }
                 case .failure(_ ):
                     print("something went wrong!") //ALERT
                 }
             }
-        }
     }
     
     private func loadSynonymResult() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
             self.synonymViewModel.fetchSynonymResult(self.searchText ?? "") { result in
                 switch result {
                 case .success(_ ):
-                    self.detailCollectionView.reloadData()
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self = self else { return }
+                        self.detailCollectionView.reloadData()
+                    }
                 case .failure(_ ):
                     break
                 }
             }
-        }
+        
     }
     
     @IBAction func backButtonClicked(_ sender: UIButton) {
@@ -75,20 +81,41 @@ class DetailViewController: UIViewController {
 extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.width, height: 140)
+        if let _ = meaningDefinitions[indexPath.row].example {
+            return CGSize(width: collectionView.frame.size.width, height: 150)
+        } else {
+            return CGSize(width: collectionView.frame.size.width, height: 90)
+        }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(detailViewModel.numberOfRowsInSection())
-        return detailViewModel.numberOfRowsInSection()
+        var index = 1
+        for meaning in detailViewModel.meanings {
+            for definition in meaning.definitions {
+                meaningDefinitions.append(MeaningDefinition(partOfSpeech: "\(index) - \(meaning.partOfSpeech)", definition: definition.definition, example: definition.example))
+                index += 1
+            }
+            index = 1
+        }
+        
+        return meaningDefinitions.count // meaning definitions filter var mı yok mu bakılacak
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailCollectionViewCell", for: indexPath) as? DetailCollectionViewCell
         guard let cell = cell else { return UICollectionViewCell()}
-        print(detailViewModel.cellForRowAt(indexPath.row).word)
-//        cell.cellTitle.text = dummyTitle
-//        cell.cellSubtitle.text = dummySubtitle[indexPath.row]
+        cell.cellTitle.text = meaningDefinitions[indexPath.row].partOfSpeech
+        cell.cellSubtitle.text = meaningDefinitions[indexPath.row].definition
+        if let exampleSentence = meaningDefinitions[indexPath.row].example {
+            cell.exampleTitle.text = "Example"
+            cell.exampleText.text = exampleSentence
+            cell.exampleTitle.isHidden = false
+            cell.exampleText.isHidden = false
+        } else {
+            cell.exampleTitle.isHidden = true
+            cell.exampleText.isHidden = true
+        }
+
         return cell
     }
     

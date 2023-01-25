@@ -7,14 +7,7 @@
 
 import Foundation
 
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let welcome = try? JSONDecoder().decode(Welcome.self, from: jsonData)
-
-import Foundation
-
-// MARK: - WelcomeElement
+// MARK: - SearchResultModel
 struct SearchResultModel: Codable {
     let word, phonetic: String
     let phonetics: [Phonetic]
@@ -33,20 +26,20 @@ struct License: Codable {
 struct Meaning: Codable {
     let partOfSpeech: String
     let definitions: [Definition]
-    let synonyms, antonyms: [String]
+    let synonyms: [JSONAny]
+    let antonyms: [String]
 }
 
 // MARK: - Definition
 struct Definition: Codable {
     let definition: String
-    let synonyms: [JSONAny]
-    let antonyms: [String]
+    let synonyms, antonyms: [JSONAny]
     let example: String?
 }
 
 // MARK: - Phonetic
 struct Phonetic: Codable {
-    let text: String
+    let text: String?
     let audio: String
     let sourceURL: String?
     let license: License?

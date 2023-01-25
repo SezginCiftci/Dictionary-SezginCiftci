@@ -27,9 +27,7 @@ struct Network {
             }
             let result = try? JSONDecoder().decode(T.self, from: data)
             if let result = result {
-                DispatchQueue.main.async {
-                    completion(.success(result))
-                }
+                completion(.success(result))
             } else {
                 completion(.failure(.decodingError))
             }
