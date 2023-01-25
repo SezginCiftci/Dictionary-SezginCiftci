@@ -95,7 +95,7 @@ struct DetailResultViewModel {
         return searchResult.word
     }
     var phonetic: String {
-        return searchResult.phonetic
+        return searchResult.phonetic ?? ""
     }
     
     var meanings: [Meaning] {

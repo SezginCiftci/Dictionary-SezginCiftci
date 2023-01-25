@@ -225,6 +225,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionReusableView>
                             </collectionView>
+                            <activityIndicatorView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="HVI-yW-32N">
+                                <rect key="frame" x="182" y="423" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="AVE-eA-ylm"/>
+                                    <constraint firstAttribute="height" constant="50" id="i4i-5q-gCG"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="43d-cM-ynm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -233,13 +240,16 @@
                             <constraint firstItem="G5E-xT-Kfd" firstAttribute="top" secondItem="WDG-ya-Jsn" secondAttribute="bottom" id="G28-nS-LK4"/>
                             <constraint firstItem="WDG-ya-Jsn" firstAttribute="trailing" secondItem="43d-cM-ynm" secondAttribute="trailing" id="GTN-zi-JqM"/>
                             <constraint firstItem="WDG-ya-Jsn" firstAttribute="top" secondItem="Igx-kB-zcQ" secondAttribute="top" id="JI4-lr-Opc"/>
+                            <constraint firstItem="HVI-yW-32N" firstAttribute="centerX" secondItem="Igx-kB-zcQ" secondAttribute="centerX" id="NI4-SP-exL"/>
                             <constraint firstItem="WDG-ya-Jsn" firstAttribute="leading" secondItem="43d-cM-ynm" secondAttribute="leading" id="StO-A1-vaM"/>
+                            <constraint firstItem="HVI-yW-32N" firstAttribute="centerY" secondItem="Igx-kB-zcQ" secondAttribute="centerY" id="aA3-D8-RKf"/>
                             <constraint firstItem="43d-cM-ynm" firstAttribute="trailing" secondItem="G5E-xT-Kfd" secondAttribute="trailing" id="kdN-N4-AXO"/>
                             <constraint firstItem="G5E-xT-Kfd" firstAttribute="leading" secondItem="43d-cM-ynm" secondAttribute="leading" id="rfq-2M-T8B"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="detailCollectionView" destination="G5E-xT-Kfd" id="A61-G9-oyj"/>
+                        <outlet property="spinner" destination="HVI-yW-32N" id="yKE-iI-n7u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YEp-wn-tx6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

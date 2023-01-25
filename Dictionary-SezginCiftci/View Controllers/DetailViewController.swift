@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct MeaningDefinition {
+struct MeaningDefinition: Hashable, Equatable {
     var partOfSpeech: String
     var definition: String
     var example: String?
@@ -16,6 +16,7 @@ struct MeaningDefinition {
 class DetailViewController: UIViewController {
         
     @IBOutlet weak var detailCollectionView: UICollectionView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     fileprivate var detailViewModel = DetailListViewModel()
     fileprivate var synonymViewModel = SynonymViewListModel()
@@ -32,6 +33,7 @@ class DetailViewController: UIViewController {
     }
     
     private func configureCollectionView() {
+        spinner.transform = CGAffineTransform(scaleX: 3, y: 3)
         detailCollectionView.delegate = self
         detailCollectionView.dataSource = self
         detailCollectionView.register(DetailTableHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: DetailTableHeaderView.self))
@@ -41,42 +43,37 @@ class DetailViewController: UIViewController {
     }
     
     private func loadSearchResult() {
+        spinner.startAnimating()
         self.detailViewModel.fetchSearchResult(self.searchText ?? "") { result in
             switch result {
             case .success(_ ):
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
                     self.detailCollectionView.reloadData()
+                    self.spinner.stopAnimating()
                 }
-            case .failure(let error):
-                let errorText: String
-                switch error {
-                case .decodingError:
-                    errorText = "The word you searched for was not found."
-                case .domainError:
-                    errorText = "Something went wrong, try again later."
-                }
+            case .failure(_ ):
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
-                    self.showAlertView(title: "Error!", message: errorText, alertActions: [])
+                    self.showAlertView(title: "Error!", message: "Something went wrong, try again later.", alertActions: [])
+                    self.spinner.stopAnimating()
                 }
             }
         }
     }
     
     private func loadSynonymResult() {
-            self.synonymViewModel.fetchSynonymResult(self.searchText ?? "") { result in
-                switch result {
-                case .success(_ ):
-                    DispatchQueue.main.async { [weak self] in
-                        guard let self = self else { return }
-                        self.detailCollectionView.reloadData()
-                    }
-                case .failure(_ ):
-                    break
+        self.synonymViewModel.fetchSynonymResult(self.searchText ?? "") { result in
+            switch result {
+            case .success(_ ):
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    self.detailCollectionView.reloadData()
                 }
+            case .failure(_ ):
+                break
             }
-        
+        }
     }
     
     @IBAction func backButtonClicked(_ sender: UIButton) {
@@ -87,21 +84,19 @@ class DetailViewController: UIViewController {
 extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if let _ = generateCellItems(with: currentFilterType)[indexPath.row].example {
-            return CGSize(width: collectionView.frame.size.width, height: 150)
-        } else {
-            return CGSize(width: collectionView.frame.size.width, height: 90)
-        }
+        return CGSize(width: collectionView.frame.size.width, height: CollectionViewCellHeightHelper().generateCellHeight(generateCellItems(with: currentFilterType)[indexPath.row].definition, generateCellItems(with: currentFilterType)[indexPath.row].example))
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        var index = 1
-        for meaning in detailViewModel.meanings {
-            for definition in meaning.definitions {
-                meaningDefinitions.append(MeaningDefinition(partOfSpeech: "\(index) - \(meaning.partOfSpeech.capitalized)", definition: definition.definition, example: definition.example))
-                index += 1
+        if meaningDefinitions.isEmpty {
+            var index = 1
+            for meaning in detailViewModel.meanings {
+                for definition in meaning.definitions {
+                    meaningDefinitions.append(MeaningDefinition(partOfSpeech: "\(index) - \(meaning.partOfSpeech.capitalized)", definition: definition.definition, example: definition.example))
+                    index += 1
+                }
+                index = 1
             }
-            index = 1
         }
         
         return generateCellItems(with: currentFilterType).count
@@ -166,5 +161,27 @@ extension DetailViewController: DetailTableHeaderViewDelegate {
     func didTapFilterButton(_ filterType: WordFilters) {
         currentFilterType = filterType
         detailCollectionView.reloadData()
+    }
+}
+
+
+class CollectionViewCellHeightHelper {
+    
+    func generateCellHeight(_ descriptionText: String, _ exampleText: String?) -> CGFloat {
+        if let exampleText = exampleText {
+            switch descriptionText.count + (exampleText.count) {
+            case 0...250:
+                return 150
+            case 251...350:
+                return 200
+            case 351...:
+                return 250
+            default:
+                return 150
+            }
+        } else {
+            return 90
+        }
+        
     }
 }
