@@ -14,8 +14,8 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchTextField: UITextField!
     
-    fileprivate var viewModel = SearchViewModel()
-    fileprivate var searchTexts = [String]()
+    private var viewModel = SearchViewModel()
+    private var searchTexts = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()

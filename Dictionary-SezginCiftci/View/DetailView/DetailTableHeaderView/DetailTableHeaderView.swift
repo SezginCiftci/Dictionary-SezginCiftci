@@ -39,15 +39,17 @@ class DetailTableHeaderView: UICollectionReusableView {
     @IBOutlet weak var headerCollectionView: UICollectionView!
     @IBOutlet weak var headerTitle: UILabel!
     @IBOutlet weak var phoneticTitle: UILabel!
+    @IBOutlet weak var dismissFilterButton: UIButton!
+    @IBOutlet weak var headerCollectionLeadingConstraint: NSLayoutConstraint!
     
     var delegate: DetailTableHeaderViewDelegate?
-    
-    var headerCellItems = ["All", "Noun", "Verb", "Adjective", "Adverb"]
+    var headerCellItems = ["Noun", "Verb", "Adjective", "Adverb"]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
         configureHeaderView()
+        configureDismissFilterButton()
     }
     
     required init?(coder: NSCoder) {
@@ -60,17 +62,28 @@ class DetailTableHeaderView: UICollectionReusableView {
         addSubview(viewFromXib)
     }
     
+    private func configureDismissFilterButton() {
+        dismissFilterButton.layer.borderWidth = 0.2
+        dismissFilterButton.layer.borderColor = UIColor.black.cgColor
+        dismissFilterButton.layer.cornerRadius = 17
+        headerCollectionLeadingConstraint.constant = 20
+    }
+    
     private func configureHeaderView() {
         headerCollectionView.delegate = self
         headerCollectionView.dataSource = self
         headerCollectionView.register(UINib(nibName: String(describing: FooterCollectionViewCell.self), bundle: nil),
                                       forCellWithReuseIdentifier: String(describing: FooterCollectionViewCell.self))
-        headerCollectionView.register(UINib(nibName: String(describing: HeaderDismissFilterCell.self), bundle: nil),
-                                      forCellWithReuseIdentifier: String(describing: HeaderDismissFilterCell.self))
         if let flowLayout = headerCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }
     }
+    
+    @IBAction func dismissFilterButtonClicked(_ sender: UIButton) {
+        animateClick(dismissFilterButton, false)
+        delegate?.didTapFilterButton(.All)
+    }
+    
 }
 
 extension DetailTableHeaderView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -84,38 +97,60 @@ extension DetailTableHeaderView: UICollectionViewDataSource, UICollectionViewDel
     }
     
     private func generateCell(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> UICollectionViewCell {
-        switch indexPath.row {
-        case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HeaderDismissFilterCell.self), for: indexPath) as? HeaderDismissFilterCell
-            guard let cell = cell else { return UICollectionViewCell()}
-            return cell
-        default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: FooterCollectionViewCell.self), for: indexPath) as? FooterCollectionViewCell
-            guard let cell = cell else { return UICollectionViewCell()}
-            cell.synonymLabel.text = headerCellItems[indexPath.row]
-            return cell
-        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: FooterCollectionViewCell.self), for: indexPath) as? FooterCollectionViewCell
+        guard let cell = cell else { return UICollectionViewCell()}
+        cell.synonymLabel.text = headerCellItems[indexPath.row]
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? FooterCollectionViewCell else { return }
+        cell.layer.cornerRadius = 16
+        animateClick(cell, true)
         generateFilterTypes(at: indexPath.row)
     }
     
     private func generateFilterTypes(at index: Int) {
         switch index {
         case 0:
-            delegate?.didTapFilterButton(.All)
-        case 1:
             delegate?.didTapFilterButton(.Noun)
-        case 2:
+        case 1:
             delegate?.didTapFilterButton(.Verb)
-        case 3:
+        case 2:
             delegate?.didTapFilterButton(.Adjective)
-        case 4:
+        case 3:
             delegate?.didTapFilterButton(.Adverb)
         default:
             delegate?.didTapFilterButton(.All)
         }
+    }
+    
+    private func animateClick(_ anyView: UIView, _ isOpen: Bool) {
+        self.layoutIfNeeded()
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut) {
+            anyView.layer.backgroundColor = UIColor.purple.cgColor
+            self.layoutIfNeeded()
+        } completion: { _ in
+            anyView.layer.backgroundColor = UIColor(named: "HeaderBackgorundColor")?.cgColor
+            self.confiureDismisButton(isOpen)
+        }
+    }
+    
+    private func confiureDismisButton(_ isOpen: Bool) {
+        switch isOpen {
+        case true:
+            self.animateDismissButton(61)
+        case false:
+            self.animateDismissButton(20)
+        }
+    }
+    
+    private func animateDismissButton(_ constraint: CGFloat) {
+        self.layoutIfNeeded()
+        UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseOut) {
+            self.headerCollectionLeadingConstraint.constant = constraint
+            self.layoutIfNeeded()
+        } completion: { _ in }
     }
 }
 

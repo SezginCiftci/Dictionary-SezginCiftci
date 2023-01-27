@@ -12,10 +12,10 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailCollectionView: UICollectionView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
-    fileprivate var detailViewModel = DetailListViewModel()
-    fileprivate var synonymViewModel = SynonymViewListModel()
-    fileprivate var meaningDefinitions = [DetailCollectionCellViewModel]()
-    fileprivate var currentFilterType: WordFilters = .All
+    private var detailViewModel = DetailListViewModel()
+    private var synonymViewModel = SynonymViewListModel()
+    private var meaningDefinitions = [DetailCollectionCellViewModel]()
+    private var currentFilterType: WordFilters = .All
     var searchText: String?
     
     override func viewDidLoad() {

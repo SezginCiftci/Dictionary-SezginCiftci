@@ -29,8 +29,6 @@
 		C4F86526297FB961008F1552 /* DetailTableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4F86525297FB961008F1552 /* DetailTableFooterView.xib */; };
 		C4F86529297FC0C1008F1552 /* FooterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4F86528297FC0C1008F1552 /* FooterCollectionViewCell.xib */; };
 		C4F8652B297FC170008F1552 /* FooterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F8652A297FC170008F1552 /* FooterCollectionViewCell.swift */; };
-		C4F86531297FEDF5008F1552 /* HeaderDismissFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F86530297FEDF5008F1552 /* HeaderDismissFilterCell.swift */; };
-		C4F86533297FEE12008F1552 /* HeaderDismissFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4F86532297FEE12008F1552 /* HeaderDismissFilterCell.xib */; };
 		C4FB1DCF298187AF00E09364 /* Optional+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB1DCE298187AF00E09364 /* Optional+Extension.swift */; };
 		C4FB1DD229818A1200E09364 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB1DD129818A1200E09364 /* UIViewController+Extension.swift */; };
 		C4FB1DD42981B6B000E09364 /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4FB1DD32981B6B000E09364 /* ApiConstants.swift */; };
@@ -64,8 +62,6 @@
 		C4F86525297FB961008F1552 /* DetailTableFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTableFooterView.xib; sourceTree = "<group>"; };
 		C4F86528297FC0C1008F1552 /* FooterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterCollectionViewCell.xib; sourceTree = "<group>"; };
 		C4F8652A297FC170008F1552 /* FooterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterCollectionViewCell.swift; sourceTree = "<group>"; };
-		C4F86530297FEDF5008F1552 /* HeaderDismissFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderDismissFilterCell.swift; sourceTree = "<group>"; };
-		C4F86532297FEE12008F1552 /* HeaderDismissFilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderDismissFilterCell.xib; sourceTree = "<group>"; };
 		C4FB1DCE298187AF00E09364 /* Optional+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Extension.swift"; sourceTree = "<group>"; };
 		C4FB1DD129818A1200E09364 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		C4FB1DD32981B6B000E09364 /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
@@ -117,20 +113,10 @@
 		C49716B7297FFE2A005FFFF6 /* DetailTableHeaderView */ = {
 			isa = PBXGroup;
 			children = (
-				C49716B8297FFE49005FFFF6 /* HeaderViewCell */,
 				C4F86520297FB5AB008F1552 /* DetailTableHeaderView.swift */,
 				C4F86523297FB6BE008F1552 /* DetailTableHeaderView.xib */,
 			);
 			path = DetailTableHeaderView;
-			sourceTree = "<group>";
-		};
-		C49716B8297FFE49005FFFF6 /* HeaderViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				C4F86530297FEDF5008F1552 /* HeaderDismissFilterCell.swift */,
-				C4F86532297FEE12008F1552 /* HeaderDismissFilterCell.xib */,
-			);
-			path = HeaderViewCell;
 			sourceTree = "<group>";
 		};
 		C49716B9297FFE61005FFFF6 /* FooterViewCell */ = {
@@ -315,7 +301,6 @@
 				C4F86529297FC0C1008F1552 /* FooterCollectionViewCell.xib in Resources */,
 				C4A199CA297EF26600EAA026 /* Main.storyboard in Resources */,
 				C4F86526297FB961008F1552 /* DetailTableFooterView.xib in Resources */,
-				C4F86533297FEE12008F1552 /* HeaderDismissFilterCell.xib in Resources */,
 				C461CB7529805F54007F360A /* DetailCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,7 +318,6 @@
 				C4FB1DD42981B6B000E09364 /* ApiConstants.swift in Sources */,
 				C4A199D7297F046600EAA026 /* RecentSearchTableViewCell.swift in Sources */,
 				C4F8651F297FB586008F1552 /* DetailTableFooterView.swift in Sources */,
-				C4F86531297FEDF5008F1552 /* HeaderDismissFilterCell.swift in Sources */,
 				C461CB782980691E007F360A /* WebService.swift in Sources */,
 				C4FB1DCF298187AF00E09364 /* Optional+Extension.swift in Sources */,
 				C461CB7D29806ED6007F360A /* SynonymResultModel.swift in Sources */,

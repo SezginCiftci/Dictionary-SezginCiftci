@@ -9,6 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailTableHeaderView" customModule="Dictionary_SezginCiftci" customModuleProvider="target">
             <connections>
+                <outlet property="dismissFilterButton" destination="zYs-45-wGK" id="6rx-Zb-hsD"/>
+                <outlet property="headerCollectionLeadingConstraint" destination="1i2-Ks-yZT" id="yMe-y9-ZKr"/>
                 <outlet property="headerCollectionView" destination="j0m-05-6w2" id="xSr-gf-6ik"/>
                 <outlet property="headerTitle" destination="y2O-cP-LiS" id="BdJ-ww-Xff"/>
                 <outlet property="phoneticTitle" destination="LRp-jP-frU" id="gTZ-k5-1rD"/>
@@ -52,8 +54,20 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zYs-45-wGK">
+                    <rect key="frame" x="20" y="86" width="33" height="33"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="33" id="2eN-XO-hLZ"/>
+                        <constraint firstAttribute="width" constant="33" id="3dr-Zu-nBY"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="exitImage"/>
+                    <connections>
+                        <action selector="dismissFilterButtonClicked:" destination="-1" eventType="touchUpInside" id="Enc-zs-8is"/>
+                    </connections>
+                </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="j0m-05-6w2">
-                    <rect key="frame" x="20" y="86" width="374" height="54"/>
+                    <rect key="frame" x="61" y="86" width="333" height="54"/>
                     <color key="backgroundColor" name="HeaderBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QZH-VJ-Yuh">
                         <size key="itemSize" width="128" height="128"/>
@@ -65,10 +79,12 @@
             </subviews>
             <color key="backgroundColor" name="HeaderBackgroundColor"/>
             <constraints>
+                <constraint firstItem="j0m-05-6w2" firstAttribute="leading" secondItem="JVP-5k-HNP" secondAttribute="leading" constant="61" id="1i2-Ks-yZT"/>
                 <constraint firstItem="LRp-jP-frU" firstAttribute="top" secondItem="y2O-cP-LiS" secondAttribute="bottom" constant="13" id="52a-CV-Fwy"/>
-                <constraint firstAttribute="trailing" secondItem="j0m-05-6w2" secondAttribute="trailing" constant="20" id="6Nv-wO-QIY"/>
-                <constraint firstItem="j0m-05-6w2" firstAttribute="leading" secondItem="JVP-5k-HNP" secondAttribute="leading" constant="20" id="M9y-IH-4c7"/>
                 <constraint firstItem="y2O-cP-LiS" firstAttribute="top" secondItem="JVP-5k-HNP" secondAttribute="top" constant="7" id="TQU-rV-tqT"/>
+                <constraint firstItem="zYs-45-wGK" firstAttribute="leading" secondItem="JVP-5k-HNP" secondAttribute="leading" constant="20" id="ZwW-9N-j44"/>
+                <constraint firstItem="zYs-45-wGK" firstAttribute="top" secondItem="j0m-05-6w2" secondAttribute="top" id="fJL-zf-Uuh"/>
+                <constraint firstAttribute="trailing" secondItem="j0m-05-6w2" secondAttribute="trailing" constant="20" symbolic="YES" id="hIh-0K-59V"/>
                 <constraint firstAttribute="trailing" secondItem="zEN-d0-pdj" secondAttribute="trailing" constant="20" id="iCd-th-2JE"/>
                 <constraint firstItem="j0m-05-6w2" firstAttribute="top" secondItem="LRp-jP-frU" secondAttribute="bottom" constant="12" id="j2U-oR-Jg8"/>
                 <constraint firstAttribute="bottom" secondItem="j0m-05-6w2" secondAttribute="bottom" constant="10" id="jZf-bH-J0J"/>
@@ -82,6 +98,7 @@
     </objects>
     <resources>
         <image name="Audio" width="22" height="19"/>
+        <image name="exitImage" width="15" height="15"/>
         <namedColor name="HeaderBackgroundColor">
             <color red="0.97299998998641968" green="0.97299998998641968" blue="0.97299998998641968" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

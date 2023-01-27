@@ -35,7 +35,6 @@ class DetailTableFooterView: UICollectionReusableView {
         addSubview(viewFromXib)
     }
     
-    
     private func configureHeaderView() {
         footerCollectionView.delegate = self
         footerCollectionView.dataSource = self
